@@ -1,30 +1,18 @@
+require 'ugly_trivia/questions'
 module UglyTrivia
-  class Game
+  class Game < Questions
     def  initialize
       @players = []
       @places = Array.new(6, 0)
       @purses = Array.new(6, 0)
       @in_penalty_box = Array.new(6, nil)
 
-      @pop_questions = []
-      @science_questions = []
-      @sports_questions = []
-      @rock_questions = []
-
       @current_player = 0
       @is_getting_out_of_penalty_box = false
 
-      50.times do |i|
-        @pop_questions.push "Pop Question #{i}"
-        @science_questions.push "Science Question #{i}"
-        @sports_questions.push "Sports Question #{i}"
-        @rock_questions.push create_rock_question(i)
-      end
+      super
     end
 
-    def create_rock_question(index)
-      "Rock Question #{index}"
-    end
 
     def is_playable?
       how_many_players >= 2
@@ -78,13 +66,6 @@ module UglyTrivia
     end
 
   private
-
-    def ask_question
-      puts @pop_questions.shift if current_category == 'Pop'
-      puts @science_questions.shift if current_category == 'Science'
-      puts @sports_questions.shift if current_category == 'Sports'
-      puts @rock_questions.shift if current_category == 'Rock'
-    end
 
     def current_category
       case @places[@current_player]
