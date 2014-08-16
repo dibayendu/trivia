@@ -1,6 +1,6 @@
 require 'ugly_trivia/questions'
 module UglyTrivia
-  class Game < Questions
+  class Game
     def  initialize
       @players = []
       @places = Array.new(6, 0)
@@ -10,7 +10,7 @@ module UglyTrivia
       @current_player = 0
       @is_getting_out_of_penalty_box = false
 
-      super
+      @questions = UglyTrivia::Questions.new
     end
 
 
@@ -47,8 +47,8 @@ module UglyTrivia
           @places[@current_player] = @places[@current_player] - 12 if @places[@current_player] > 11
 
           puts "#{@players[@current_player]}'s new location is #{@places[@current_player]}"
-          puts "The category is #{current_category}"
-          ask_question
+          puts "The category is #{@questions.current_category(@places[@current_player])}"
+          @questions.ask_question(@places[@current_player])
         else
           puts "#{@players[@current_player]} is not getting out of the penalty box"
           @is_getting_out_of_penalty_box = false
@@ -60,25 +60,12 @@ module UglyTrivia
         @places[@current_player] = @places[@current_player] - 12 if @places[@current_player] > 11
 
         puts "#{@players[@current_player]}'s new location is #{@places[@current_player]}"
-        puts "The category is #{current_category}"
-        ask_question
+        puts "The category is #{@questions.current_category(@places[@current_player])}"
+        @questions.ask_question(@places[@current_player])
       end
     end
 
   private
-
-    def current_category
-      case @places[@current_player]
-      when 0, 4, 8
-         'Pop'
-      when 1, 5, 9
-         'Science'
-      when 2, 6, 10
-         'Sports'
-      when 3, 7, 11
-         'Rock'
-      end
-    end
 
   public
 

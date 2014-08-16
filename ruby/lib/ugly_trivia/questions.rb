@@ -20,14 +20,27 @@ module UglyTrivia
       "Rock Question #{index}"
     end
 
-    private
-    
-    def ask_question
-      puts @pop_questions.shift if current_category == 'Pop'
-      puts @science_questions.shift if current_category == 'Science'
-      puts @sports_questions.shift if current_category == 'Sports'
-      puts @rock_questions.shift if current_category == 'Rock'
+    def ask_question(place)
+      puts @pop_questions.shift if current_category(place) == 'Pop'
+      puts @science_questions.shift if current_category(place) == 'Science'
+      puts @sports_questions.shift if current_category(place) == 'Sports'
+      puts @rock_questions.shift if current_category(place) == 'Rock'
     end
+
+    def current_category(place)
+      case place
+      when 0, 4, 8
+         'Pop'
+      when 1, 5, 9
+         'Science'
+      when 2, 6, 10
+         'Sports'
+      when 3, 7, 11
+         'Rock'
+      end
+    end
+
+
 
 	end
 end
