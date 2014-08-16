@@ -104,10 +104,11 @@ module UglyTrivia
   def in_penalty_box
     @in_penalty_box[@current_player]
   end
+  attr_reader :is_getting_out_of_penalty_box
 
     def was_correctly_answered
       if in_penalty_box
-        if @is_getting_out_of_penalty_box
+        if is_getting_out_of_penalty_box
           puts 'Answer was correct!!!!'
           @purses[@current_player] += 1
           puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
