@@ -126,8 +126,7 @@ module UglyTrivia
 
         winner = not_yet_winner
       end
-        @current_player += 1
-        @current_player = 0 if @current_player == @players.length
+        move_to_next_player
         winner
     end
 
@@ -136,9 +135,13 @@ module UglyTrivia
   		puts "#{@players[@current_player]} was sent to the penalty box"
   		@in_penalty_box[@current_player] = true
 
+      move_to_next_player
+  		return true
+    end
+
+    def move_to_next_player
       @current_player += 1
       @current_player = 0 if @current_player == @players.length
-  		return true
     end
 
   private
