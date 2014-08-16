@@ -87,22 +87,26 @@ module UglyTrivia
     end
 
     def current_category
-      return 'Pop' if @places[@current_player] == 0
-      return 'Pop' if @places[@current_player] == 4
-      return 'Pop' if @places[@current_player] == 8
-      return 'Science' if @places[@current_player] == 1
-      return 'Science' if @places[@current_player] == 5
-      return 'Science' if @places[@current_player] == 9
-      return 'Sports' if @places[@current_player] == 2
-      return 'Sports' if @places[@current_player] == 6
-      return 'Sports' if @places[@current_player] == 10
-      return 'Rock'
+      case @places[@current_player]
+      when 0, 4, 8
+         'Pop'
+      when 1, 5, 9
+         'Science'
+      when 2, 6, 10
+         'Sports'
+      when 3, 7, 11
+         'Rock'
+      end
     end
 
   public
 
+  def in_penalty_box
+    @in_penalty_box[@current_player]
+  end
+
     def was_correctly_answered
-      if @in_penalty_box[@current_player]
+      if in_penalty_box
         if @is_getting_out_of_penalty_box
           puts 'Answer was correct!!!!'
           @purses[@current_player] += 1
