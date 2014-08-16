@@ -1,5 +1,5 @@
 module UglyTrivia
-	class Players
+	class PlayersCollection
     def  initialize
 			@players = []
       @places = Array.new(6, 0)
@@ -8,7 +8,7 @@ module UglyTrivia
 
 		end
 
-		
+
     def is_playable?
       how_many_players >= 2
     end

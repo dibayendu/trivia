@@ -1,13 +1,14 @@
 require 'ugly_trivia/questions'
 require 'ugly_trivia/players'
 module UglyTrivia
-  class Game < Players
+  class Game < PlayersCollection
     def  initialize
       super
       @current_player = 0
       @is_getting_out_of_penalty_box = false
 
       @questions = UglyTrivia::Questions.new
+      @player = UglyTrivia::Players.new
     end
 
     def roll(roll)
