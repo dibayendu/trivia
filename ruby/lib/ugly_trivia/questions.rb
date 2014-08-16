@@ -21,10 +21,16 @@ module UglyTrivia
     end
 
     def ask_question(place)
-      puts @pop_questions.shift if current_category(place) == 'Pop'
-      puts @science_questions.shift if current_category(place) == 'Science'
-      puts @sports_questions.shift if current_category(place) == 'Sports'
-      puts @rock_questions.shift if current_category(place) == 'Rock'
+    	puts case current_category(place)
+    	when 'Pop'
+    		@pop_questions.shift
+    	when 'Science'
+    		@science_questions.shift
+    	when 'Sports'
+    		@sports_questions.shift
+    	when 'Rock'
+    		@rock_questions.shift
+    	end
     end
 
     def current_category(place)
