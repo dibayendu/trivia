@@ -114,14 +114,10 @@ module UglyTrivia
           puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
 
           winner = did_player_win()
-          @current_player += 1
-          @current_player = 0 if @current_player == @players.length
 
           winner
         else
-          @current_player += 1
-          @current_player = 0 if @current_player == @players.length
-          true
+          winner = true
         end
 
 
@@ -133,11 +129,10 @@ module UglyTrivia
         puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
 
         winner = did_player_win
+      end
         @current_player += 1
         @current_player = 0 if @current_player == @players.length
-
-        return winner
-      end
+        winner
     end
 
     def wrong_answer
