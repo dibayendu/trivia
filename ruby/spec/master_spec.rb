@@ -18,7 +18,7 @@ describe 'golden master' do
       if r.rand(9) == 7
         not_a_winner = game.wrong_answer
       else
-        not_a_winner = game.was_correctly_answered
+        not_a_winner = !game.was_correctly_answered
       end
 
     end while not_a_winner

@@ -113,18 +113,16 @@ module UglyTrivia
           @purses[@current_player] += 1
           puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
 
-          winner = not_yet_winner()
-
-          winner
+          winner = winner?
         else
-          winner = true
+          winner = false
         end
       else
         puts "Answer was corrent!!!!"
         @purses[@current_player] += 1
         puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
 
-        winner = not_yet_winner
+        winner = winner?
       end
         move_to_next_player
         winner
@@ -146,8 +144,8 @@ module UglyTrivia
 
   private
 
-    def not_yet_winner
-      !(@purses[@current_player] == 6)
+    def winner?
+      @purses[@current_player] == 6
     end
   end
 end
